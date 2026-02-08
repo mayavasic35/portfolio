@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Maya Vasic</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-light: #F2F2F2;
+            --dark: #1A1B1E;
+            --font-display: 'Montserrat', sans-serif;
+            --font-main: 'Archivo', sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            background: var(--bg-light); 
+            font-family: var(--font-main);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        section { 
+            min-height: 100vh; 
+            width: 100%; 
+            display: flex; 
+            position: relative; 
+        }
+
+        /* --- BLOC 1 : COVER --- */
+        #bloc-1-cover {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('steven.jpg') center/cover no-repeat;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; 
+            color: white;
+            text-transform: uppercase;
+        }
+
+        #bloc-1-cover .subtitle { 
+            letter-spacing: 12px; 
+            font-size: 1.2rem; 
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .title-group {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-end; 
+        }
+
+        #bloc-1-cover h1 { 
+            font-family: var(--font-display); 
+            font-size: clamp(3rem, 15vw, 9rem); 
+            margin: 0; 
+            line-height: 0.8; 
+        }
+
+        #bloc-1-cover .footer-info { 
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+
+        /* --- BLOC 2 : BIO & SKILLS --- */
+        #bloc-2-about { 
+            align-items: center; 
+            justify-content: center; 
+            padding: 80px 20px;
+        }
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr 0.8fr;
+            gap: 50px;
+            max-width: 1200px;
+        }
+        .profile-img { width: 100%; border-radius: 40px; }
+        .title-hello { font-family: var(--font-display); font-size: 5rem; margin: 0 0 15px 0; }
+        .section-label { font-family: var(--font-display); border-bottom: 3px solid var(--dark); display: block; font-size: 1.5rem; margin-bottom: 15px; text-transform: uppercase; }
+        .skills-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 30px; }
+        .skill-box { background: var(--dark); color: white; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: 700; }
+
+        /* --- BLOC 3 : CONTENTS (FIXED) --- */
+        #bloc-3-contents { 
+            background: white; 
+            align-items: stretch;
+        }
+        .contents-left { 
+            flex: 1.2; 
+            position: relative;
+            padding: 0;
+            overflow: hidden;
+        }
+        .contents-left img { 
+        position: absolute;
+        top: 0; 
+        left: 0;
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        /* On change 'center' par un pourcentage pour remonter l'image */
+        /* 50% = centre, moins de 50% = vers le haut */
+        object-position: center 90%; 
+       }
+        .contents-right { 
+            flex: 0.8; 
+            background: var(--dark); 
+            color: white; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            padding: 60px; 
+        }
+        .contents-right h2 { font-family: var(--font-display); font-size: 6rem; margin-bottom: 40px; }
+        .item { margin-bottom: 30px; }
+        .item h4 { color: #888; margin: 0; text-transform: uppercase; }
+        .item p { font-size: 1.5rem; margin: 5px 0; font-weight: 700; text-transform: uppercase; }
+
+        /* --- BLOCS AVEC IMAGE DE FOND (Texte à droite) --- */
+        .bloc-image-right { 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 60px;
+        }
+        .text-right { 
+            color: white; 
+            text-align: right; 
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5); 
+        }
+        .text-right h2 { font-family: var(--font-display); font-size: 7rem; margin: 0; line-height: 0.8; }
+        .text-right span { font-size: 2.5rem; letter-spacing: 5px; }
+
+        /* --- BLOCS TEXTE (Texte à gauche) --- */
+        .bloc-text-left { 
+            padding: 100px; 
+            flex-direction: column; 
+            justify-content: center;
+            background: var(--bg-light);
+        }
+        .bloc-text-left h2 { 
+            font-family: var(--font-display); 
+            font-size: clamp(3rem, 10vw, 6rem); 
+            line-height: 0.9; 
+            margin: 0 0 40px 0; 
+            max-width: 600px; 
+        }
+
+        .project-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 35px;
+            text-transform: none;
+            text-align: justify;
+            /* AJOUTE CETTE LIGNE : */
+            max-width: 500px; 
+        }
+
+        .project-description strong {
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .highlight {
+            border-bottom: 2px solid var(--dark);
+            font-weight: 600;
+        }
+        .project-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .project-list li {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-left: 30px;
+            position: relative;
+        }
+        .project-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 2rem;
+        }
+                /* Section Posters */
+        .poster-section {
+            background-color: var(--bg-light); /* Fond gris clair comme sur l'image */
+            width: 100%;
+            min-height: 100vh;
+            display: block; /* On repasse en block pour le flux naturel */
+            padding: 60px 0; /* Espace en haut et en bas de la section */
+        }
+
+        .poster-container {
+            max-width: 1400px; /* Largeur max pour ne pas coller aux bords sur grand écran */
+            margin: 0 auto;
+            padding: 0 5%; /* Espace constant sur les côtés (gauche/droite) */
+        }
+
+        .poster-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem; /* Taille du titre Posters */
+            color: var(--dark);
+            margin-bottom: 40px; /* Espace entre le titre et les images */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .poster-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .poster-item {
+            width: 100%;
+            /* On définit un ratio de hauteur (ex: 1.4 pour un format portrait standard) */
+            aspect-ratio: 2 / 3; 
+            overflow: hidden; /* Pour couper ce qui dépasse */
+            border-radius: 4px; /* Optionnel : bords légèrement arrondis */
+        }
+
+        .poster-item img {
+            width: 100%;
+            height: 100%; /* Force l'image à remplir toute la hauteur du parent */
+            display: block;
+            /* MAGIE : L'image remplit l'espace sans se déformer (elle est recadrée) */
+            object-fit: cover; 
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+
+        .poster-item img:hover {
+            transform: scale(1.05);
+        }
+        /* --- SECTION VIDEOS ASYMÉTRIE 60/40 --- */
+        .video-pinterest-section {
+            padding: 100px 0 150px 0;
+            background-color: var(--bg-light);
+        }
+
+        .pinterest-container {
+            width: 85%; /* Augmentation des marges (de 95% à 85%) */
+            max-width: 1400px; /* Contient la grille pour éviter qu'elle ne soit trop large */
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(10, 1fr); /* Système de 10 colonnes pour faire du 6/4 facile */
+            gap: 120px 60px; /* Espacement très généreux */
+        }
+
+        .v-card {
+            position: relative;
+            border-radius: 15px; /* Bords un peu plus secs pour un look pro */
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.07);
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Ratios Stricts 60/40 */
+        .v-60 { grid-column: span 6; }
+        .v-40 { grid-column: span 4; }
+
+        /* Décalages pour briser la répétition */
+        .v-align-top { align-self: start; }
+        .v-align-bottom { align-self: end; margin-top: 100px; }
+        .v-center { grid-column: 3 / span 6; } /* Une vidéo centrée au milieu pour briser le flux */
+
+        .v-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .v-card:hover {
+            transform: translateY(-15px);
+        }
+        .v-text-block {
+            grid-column: span 4; /* Prend la place libre à gauche des petites vidéos */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 40px;
+        }
+
+        .v-text-block p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #666;
+            font-style: italic;
+            border-left: 3px solid var(--dark);
+            padding-left: 20px;
+        }
+                        /* Style pour l'image paysage unique */
+        .landscape-item {
+            position: relative;
+            width: 100%;
+            /* Ratio 16:9 pour un bel effet paysage */
+            aspect-ratio: 16 / 9; 
+            background: #e0e0e0;
+            border-radius: 25px; /* Arrondi généreux pour matcher le reste du site */
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease;
+        }
+
+        .landscape-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* L'image remplit tout l'espace sans se déformer */
+            display: block;
+        }
+
+        /* Optionnel : Effet au survol */
+        .landscape-item:hover {
+            transform: scale(1.01);
+        }
+
+        .landscape-item:hover .poster-overlay {
+            opacity: 1;
+        }
+        .btn-contact {
+            transition: all 0.3s ease; /* Animation fluide de 0.3 secondes */
+        }
+
+        .btn-contact:hover {
+            background-color: white !important;
+            color: var(--dark) !important;
+            transform: translateY(-5px); /* Le bouton remonte de 5px */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+
+        /* Adaptation Tablettes / Mobiles */
+        @media (max-width: 1024px) {
+            .pinterest-container { width: 92%; gap: 60px 30px; }
+            .v-60, .v-40 { grid-column: span 5; }
+            .v-align-bottom { margin-top: 50px; }
+        }
+
+        @media (max-width: 768px) {
+            .v-60, .v-40, .v-center { grid-column: span 10; }
+            .v-align-bottom { margin-top: 0; }
+        }
+        /* Adaptation Mobile */
+        @media (max-width: 768px) {
+            .poster-grid {
+                grid-template-columns: 1fr; /* 1 seule colonne sur téléphone */
+            }
+            .poster-title {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+        }
+
+
+        /* ========================================
+           MEDIA QUERIES RESPONSIVE
+           ======================================== */
+
+        /* Tablettes et grands mobiles (max 1200px) */
+        @media (max-width: 1200px) {
+            .bio-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                max-width: 600px;
+            }
+            
+            .poster-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .pinterest-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                width: 90%;
+            }
+            
+            .v-60, .v-40, .v-center {
+                grid-column: span 1;
+            }
+            
+            .v-align-bottom {
+                margin-top: 0;
+            }
+            
+            .v-card {
+                aspect-ratio: 16 / 9;
+            }
+        }
+
+        /* Tablettes (max 1024px) */
+        @media (max-width: 1024px) {
+            .title-hello {
+                font-size: 4rem;
+            }
+            
+            .skills-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            #bloc-3-contents {
+                flex-direction: column;
+            }
+            
+            .contents-left,
+            .contents-right {
+                flex: 1;
+                min-height: 50vh;
+            }
+            
+            .contents-left {
+                height: 500px;
+                flex: none;
+            }
+            
+            .contents-right {
+                padding: 50px 40px;
+            }
+            
+            .contents-right h2 {
+                font-size: 4.5rem;
+            }
+            
+            .bloc-image-right {
+                padding: 50px 40px;
+            }
+            
+            .text-right h2 {
+                font-size: 5.5rem;
+            }
+            
+            .text-right span {
+                font-size: 2.2rem;
+            }
+            
+            .bloc-text-left {
+                padding: 80px 50px;
+            }
+        }
+
+        /* Tablettes et mobile (max 900px) */
+        @media (max-width: 900px) {
+            section {
+                min-height: auto;
+            }
+            
+            #bloc-2-about {
+                padding: 60px 30px;
+            }
+            
+            .bio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            #bloc-3-contents {
+                flex-direction: column;
+            }
+            
+            .contents-left {
+                height: 400px;
+                flex: none;
+            }
+            
+            .bloc-text-left,
+            .bloc-image-right {
+                padding: 60px 30px;
+            }
+            
+            .text-right h2 {
+                font-size: 5rem;
+            }
+            
+            .text-right span {
+                font-size: 2.5rem;
+            }
+            
+            /* Sections avec videos - mode colonne */
+            section[style*="flex-wrap"] {
+                flex-direction: column !important;
+            }
+            
+            section[style*="flex-wrap"] > div {
+                flex: 1 1 100% !important;
+                min-width: 100% !important;
+                padding-left: 5% !important;
+                padding-right: 5% !important;
+            }
+        }
+
+        /* Mobile (max 768px) */
+        @media (max-width: 768px) {
+            section {
+                padding: 40px 20px !important;
+                min-height: auto !important;
+                height: auto !important;
+            }
+            
+            #bloc-1-cover .subtitle {
+                font-size: 1rem;
+                letter-spacing: 8px;
+            }
+            
+            #bloc-1-cover .footer-info {
+                font-size: 1.3rem;
+            }
+            
+            #bloc-2-about {
+                padding: 50px 25px;
+            }
+            
+            .title-hello {
+                font-size: 3.5rem;
+            }
+            
+            .section-label {
+                font-size: 1.3rem;
+            }
+            
+            .skills-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .skill-box {
+                font-size: 0.9rem;
+            }
+            
+            .contents-right {
+                padding: 40px 25px;
+            }
+            
+            .contents-right h2 {
+                font-size: 3.5rem;
+            }
+            
+            .item p {
+                font-size: 1.3rem;
+            }
+            
+            .bloc-image-right {
+                padding: 40px 25px;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .text-right {
+                text-align: center;
+            }
+            
+            .text-right h2 {
+                font-size: 4rem;
+            }
+            
+            .text-right span {
+                font-size: 1.8rem;
+                letter-spacing: 3px;
+            }
+            
+            .bloc-text-left {
+                padding: 50px 25px;
+            }
+            
+            .project-description {
+                font-size: 1.05rem;
+            }
+            
+            .poster-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .poster-title {
+                font-size: 2rem;
+            }
+            
+            /* ============================================
+               SECTION VIDEO PINTEREST - FIX MOBILE
+               ============================================ */
+            
+            .video-pinterest-section {
+                padding: 60px 0 80px 0;
+            }
+            
+            .pinterest-container {
+                width: 95%;
+                gap: 40px;
+            }
+            
+            .v-card {
+                aspect-ratio: 16 / 9;
+                border-radius: 12px;
+            }
+            
+            .v-card video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            
+            .v-align-bottom {
+                margin-top: 0;
+            }
+            
+            /* ============================================
+               SECTIONS AVEC VIDÉOS - FIX MOBILE COMPLET
+               ============================================ */
+            
+            /* Toutes les sections avec flex-wrap */
+            section[style*="flex-wrap"],
+            section[style*="display: flex"] {
+                flex-direction: column !important;
+                padding: 40px 20px !important;
+                height: auto !important;
+                min-height: auto !important;
+            }
+            
+            /* Tous les divs enfants dans ces sections */
+            section[style*="flex-wrap"] > div,
+            section[style*="display: flex"] > div {
+                flex: 1 1 100% !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                min-width: 100% !important;
+                padding: 20px 0 !important;
+                margin: 0 !important;
+            }
+            
+            /* Vidéos - forcer la bonne taille */
+            video {
+                width: 100% !important;
+                height: auto !important;
+                max-width: 100% !important;
+                border-radius: 15px !important;
+            }
+            
+            /* Conteneurs de vidéos */
+            div[style*="aspect-ratio"],
+            div[style*="border-radius"] video {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            
+            /* Section vidéo plein écran (eyes.mp4) */
+            section[style*="110vh"] {
+                height: auto !important;
+                min-height: 60vh !important;
+                padding: 30px 15px !important;
+            }
+            
+            section[style*="110vh"] > div {
+                width: 95vw !important;
+                height: 60vh !important;
+                max-width: 95vw !important;
+                border-radius: 20px !important;
+            }
+            
+            /* Section avec vidéo et gradient (hornet) */
+            section > div[style*="min-width: 500px"] {
+                min-width: 100% !important;
+                width: 100% !important;
+                height: 50vh !important;
+            }
+            
+            /* Supprimer les gradients overlay sur mobile */
+            div[style*="linear-gradient"] {
+                display: none !important;
+            }
+            
+            /* Images qui se superposent (dermai) */
+            div[style*="top: -550px"] {
+                position: relative !important;
+                top: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+                margin-top: 30px !important;
+                align-items: center !important;
+            }
+            
+            div[style*="top: -550px"] img {
+                max-width: 100% !important;
+                width: 90% !important;
+                margin: 15px auto !important;
+                margin-right: auto !important;
+            }
+            
+            /* Ajustements sections avec vidéos */
+            div[style*="margin-top: -400px"] {
+                margin-top: 40px !important;
+                margin-right: 0 !important;
+                justify-content: center !important;
+                width: 100% !important;
+            }
+            
+            div[style*="text-align: right"] {
+                text-align: center !important;
+            }
+            
+            div[style*="text-align: right"] p {
+                margin-left: auto !important;
+                margin-right: auto !important;
+                text-align: center !important;
+                max-width: 100% !important;
+            }
+            
+            div[style*="text-align: right"] h2,
+            div[style*="text-align: right"] h4 {
+                text-align: center !important;
+            }
+            
+            /* Landscape items (vidéos horizontales) */
+            .landscape-item {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+            }
+            
+            .landscape-item video {
+                width: 100% !important;
+                height: auto !important;
+            }
+            
+            /* Portrait items */
+            .portrait-item {
+                width: 100% !important;
+                max-width: 350px !important;
+                margin: 0 auto !important;
+            }
+            
+            /* Bouton mute sur mobile */
+            button[onclick*="toggleMute"] {
+                width: 40px !important;
+                height: 40px !important;
+                bottom: 10px !important;
+                right: 10px !important;
+            }
+            
+            button[onclick*="toggleMute"] svg {
+                width: 18px !important;
+                height: 18px !important;
+            }
+            
+            /* Texte overlay sur vidéo (2D ANIMATION) */
+            div[style*="position: absolute"][style*="right: 8%"] {
+                right: 5% !important;
+                bottom: 8% !important;
+            }
+            
+            div[style*="position: absolute"][style*="right: 8%"] h2 {
+                font-size: 4rem !important;
+            }
+            
+            div[style*="position: absolute"][style*="right: 8%"] span {
+                font-size: 1.3rem !important;
+                letter-spacing: 6px !important;
+            }
+        }
+
+        /* Petit mobile (max 600px) */
+        @media (max-width: 600px) {
+            section {
+                padding: 30px 15px !important;
+                min-height: auto !important;
+                height: auto !important;
+            }
+            
+            #bloc-1-cover .subtitle {
+                font-size: 0.85rem;
+                letter-spacing: 5px;
+            }
+            
+            #bloc-1-cover h1 {
+                font-size: 3rem !important;
+            }
+            
+            #bloc-1-cover .footer-info {
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+            }
+            
+            .title-hello {
+                font-size: 2.8rem;
+            }
+            
+            .section-label {
+                font-size: 1.1rem;
+            }
+            
+            .contents-left {
+                height: 300px;
+            }
+            
+            .contents-right h2 {
+                font-size: 3rem;
+            }
+            
+            .item p {
+                font-size: 1.1rem;
+            }
+            
+            .text-right h2 {
+                font-size: 3rem;
+            }
+            
+            .text-right span {
+                font-size: 1.4rem;
+            }
+            
+            .project-description {
+                font-size: 1rem;
+            }
+            
+            .poster-title {
+                font-size: 1.8rem;
+            }
+            
+            .video-pinterest-section {
+                padding: 50px 0 70px 0;
+            }
+            
+            .pinterest-container {
+                width: 92%;
+                gap: 35px;
+            }
+            
+            .v-card {
+                aspect-ratio: 16 / 9;
+                border-radius: 10px;
+                box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            }
+            
+            .v-card:hover {
+                transform: none;
+            }
+            
+            /* VIDÉOS - Optimisation complète mobile */
+            section[style*="110vh"] {
+                height: auto !important;
+                min-height: 50vh !important;
+                padding: 20px 10px !important;
+            }
+            
+            section[style*="110vh"] > div {
+                width: 98vw !important;
+                height: 50vh !important;
+                border-radius: 15px !important;
+            }
+            
+            /* Toutes les vidéos */
+            video {
+                border-radius: 12px !important;
+            }
+            
+            /* Images superposées */
+            div[style*="top: -550px"] img {
+                width: 95% !important;
+                margin: 10px auto !important;
+            }
+            
+            /* Sections flex */
+            section[style*="flex-wrap"] > div {
+                padding: 15px 0 !important;
+            }
+            
+            /* Texte overlay réduit */
+            div[style*="position: absolute"][style*="right: 8%"] h2 {
+                font-size: 3.5rem !important;
+            }
+            
+            div[style*="position: absolute"][style*="right: 8%"] span {
+                font-size: 1.1rem !important;
+                letter-spacing: 4px !important;
+            }
+        }
+
+        /* Très petit mobile (max 480px) */
+        @media (max-width: 480px) {
+            #bloc-1-cover .subtitle {
+                font-size: 0.75rem;
+                letter-spacing: 3px;
+            }
+            
+            #bloc-1-cover h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            #bloc-1-cover .footer-info {
+                font-size: 1rem;
+            }
+            
+            .title-hello {
+                font-size: 2.3rem;
+            }
+            
+            .contents-right {
+                padding: 30px 20px;
+            }
+            
+            .contents-right h2 {
+                font-size: 2.5rem;
+            }
+            
+            .text-right h2 {
+                font-size: 2.5rem;
+            }
+            
+            .text-right span {
+                font-size: 1.2rem;
+            }
+            
+            .bloc-text-left,
+            .bloc-image-right {
+                padding: 40px 20px;
+            }
+            
+            .project-description {
+                font-size: 0.95rem;
+            }
+            
+            .poster-title {
+                font-size: 1.5rem;
+                margin-bottom: 25px;
+            }
+            
+            .video-pinterest-section {
+                padding: 40px 0 60px 0;
+            }
+            
+            .pinterest-container {
+                width: 95%;
+                gap: 30px;
+            }
+            
+            .v-card {
+                aspect-ratio: 16 / 9;
+                border-radius: 8px;
+            }
+            
+            section[style*="padding"] {
+                padding: 25px 15px !important;
+            }
+            
+            /* VIDÉOS - Adaptation finale pour petits écrans */
+            section[style*="110vh"] {
+                min-height: 40vh !important;
+                padding: 15px 10px !important;
+            }
+            
+            section[style*="110vh"] > div {
+                width: 100vw !important;
+                height: 40vh !important;
+                border-radius: 10px !important;
+                margin: 0 -15px !important;
+            }
+            
+            /* Toutes les vidéos plus petites */
+            video {
+                border-radius: 10px !important;
+                max-height: 50vh !important;
+            }
+            
+            /* Images dermai */
+            div[style*="top: -550px"] img {
+                width: 100% !important;
+            }
+            
+            /* Conteneurs vidéo */
+            div[style*="border-radius: 25px"] {
+                border-radius: 15px !important;
+            }
+            
+            /* Sections flex ajustées */
+            section[style*="flex-wrap"],
+            section[style*="display: flex"] {
+                padding: 30px 15px !important;
+            }
+            
+            section[style*="flex-wrap"] > div {
+                padding: 10px 0 !important;
+            }
+            
+            /* Bouton LinkedIn responsive */
+            a[style*="padding: 18px 40px"] {
+                padding: 15px 30px !important;
+                font-size: 0.9rem !important;
+            }
+            
+            /* Texte overlay minimal */
+            div[style*="position: absolute"][style*="right: 8%"] {
+                right: 3% !important;
+                bottom: 5% !important;
+            }
+            
+            div[style*="position: absolute"][style*="right: 8%"] h2 {
+                font-size: 2.8rem !important;
+            }
+            
+            div[style*="position: absolute"][style*="right: 8%"] span {
+                font-size: 0.9rem !important;
+                letter-spacing: 3px !important;
+            }
+            
+            /* Bouton mute plus petit */
+            button[onclick*="toggleMute"] {
+                width: 35px !important;
+                height: 35px !important;
+            }
+            
+            button[onclick*="toggleMute"] svg {
+                width: 16px !important;
+                height: 16px !important;
+            }
+        }
+        @media (max-width: 900px) {
+            /* Force toutes les sections à s'empiler verticalement */
+            .responsive-section {
+                flex-direction: column !important;
+                height: auto !important;
+                min-height: auto !important;
+                padding: 60px 20px !important;
+                text-align: center !important;
+            }
+
+            /* Le bloc de texte prend toute la largeur */
+            .responsive-text {
+                max-width: 100% !important;
+                margin-bottom: 50px !important;
+            }
+
+            /* Le texte de gauche s'aligne au centre pour faire plus propre sur mobile */
+            .responsive-text p, .responsive-text h2 {
+                text-align: center !important;
+            }
+
+            /* Ajustement spécifique pour le bloc 3D */
+            .stack-3d-mobile {
+                height: 450px !important;
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+                position: relative !important;
+            }
+
+            /* On réduit la taille des images Neferti pour le mobile */
+            .img-neferti-mobile {
+                width: 250px !important;
+                transform: translate(0, 0) !important; /* On reset le décalage ordi */
+            }
+            
+            /* On recrée un décalage plus petit qui ne sort pas de l'écran */
+            .n-1 { transform: translate(30px, -20px) !important; }
+            .n-2 { transform: translate(-30px, 120px) !important; }
+        }
+        
+@media (max-width: 992px) {
+    /* 1. On annule la hauteur nulle du conteneur pour laisser de la place aux images */
+    div[style*="position: relative; width: 100%; height: 0;"] {
+        height: auto !important;
+        margin-top: 30px;
+    }
+
+    /* 2. On repositionne le bloc d'images qui était en "top: -550px" */
+    div[style*="position: absolute; right: 0%; top: -550px;"] {
+        position: relative !important; /* Il redevient un bloc normal sous le texte */
+        top: 0 !important;             /* On annule le décalage vers le haut */
+        width: 100% !important;        /* Il prend toute la largeur */
+        align-items: center !important; /* On centre les images */
+    }
+
+    /* 3. On ajuste les images pour qu'elles ne dépassent pas de l'écran */
+    div[style*="position: absolute; right: 0%; top: -550px;"] img {
+        margin-right: 0 !important;    /* On enlève les décalages horizontaux PC */
+        max-width: 90% !important;     /* Elles s'adaptent à la largeur du téléphone */
+        height: auto !important;
+    }
+
+    /* 4. On garde un petit effet de chevauchement stylé mais léger pour le mobile */
+    img[src="dermai2.png"] {
+        margin-top: -40px !important;
+        margin-left: 20px !important;
+    }
+}
+
+    /* --- BLOCS TEXTE (Texte à gauche) --- */
+.bloc-text-left { 
+    padding: 100px; 
+    flex-direction: column; 
+    justify-content: center;
+    background: var(--bg-light);
+}
+
+.bloc-text-left h2 { 
+    font-family: var(--font-display); 
+    font-size: clamp(3rem, 10vw, 6rem); 
+    line-height: 0.9; 
+    margin: 0 0 40px 0; 
+    max-width: 600px; 
+}
+
+.project-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 35px;
+    text-transform: none;
+    text-align: justify;
+    max-width: 500px; 
+}
+
+.highlight {
+    border-bottom: 2px solid var(--dark);
+    font-weight: 600;
+}
+
+/* --- ADAPTATION MOBILE (Responsive) --- */
+@media (max-width: 992px) {
+    div[style*="position: relative; width: 100%; height: 0;"] {
+        height: auto !important;
+        margin-top: 30px;
+    }
+
+    div[style*="position: absolute; right: 0%; top: -550px;"] {
+        position: relative !important;
+        top: 0 !important;
+        width: 100% !important;
+        align-items: center !important;
+    }
+
+    div[style*="position: absolute; right: 0%; top: -550px;"] img {
+        margin-right: 0 !important;
+        max-width: 90% !important;
+        height: auto !important;
+    }
+
+    img[src="dermai2.png"] {
+        margin-top: -40px !important;
+        margin-left: 20px !important;
+    }
+}
+
+/* --- SECTION ENTRAINEMENT IA (CORRECTION) --- */
+.section-ia-layout {
+    display: flex;
+    align-items: center; /* Centre le texte et les images verticalement */
+    padding: 80px 10%;
+    gap: 40px;
+    background: var(--bg-light);
+    min-height: 100vh;
+}
+
+.ia-text-part {
+    flex: 1;
+}
+
+.ia-images-part {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Aligne les images à droite */
+}
+
+/* Image 1 (derrière) */
+.img-ia-1 {
+    width: 85%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    z-index: 1;
+    transform: translate(-30px, 20px); /* Petit décalage pour le style */
+}
+
+/* Image 2 (devant) */
+.img-ia-2 {
+    width: 85%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+    margin-top: -180px; /* Chevauchement léger pour qu'on voie bien la 1ère */
+    z-index: 2;
+}
+
+/* Version Mobile */
+@media (max-width: 992px) {
+    .section-ia-layout {
+        flex-direction: column;
+        padding: 60px 20px;
+        text-align: center;
+    }
+    .ia-images-part {
+        align-items: center;
+        margin-top: 40px;
+    }
+    .img-ia-1, .img-ia-2 {
+        width: 100%;
+        transform: none;
+        margin-top: 20px;
+    }
+}
+
+
+
+    </style>
+</head>
+<body>
+
+    <section id="bloc-1-cover">
+        <p class="subtitle">MAYA VASIC</p>
+        <div class="title-group">
+            <h1>PORTFOLIO</h1>
+            <div class="footer-info">2025 - 2026</div>
+        </div>
+    </section>
+
+ <section style="display: flex; gap: 60px; padding: 60px 8%; align-items: flex-start; font-family: sans-serif;">
+        
+    <div style="flex: 1.2;">
+        <img src="photo_cv1.jpg" alt="Illustration" 
+            style="width: 100%; height: 520px; object-fit: cover; border-radius: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+    </div>
+    <div style="flex: 1.5;">
+        <h1 style="font-size: 4rem; margin: 0 0 20px 0; font-weight: 900;">Bonjour !</h1>
+        <p style="line-height: 1.6; font-size: 1.1rem; margin-bottom: 25px;">
+            Je m'appelle <strong>Maya Vasic</strong>. Mon parcours est guidé par l'envie d'apprendre et d'explorer sans me limiter à une seule discipline. J'aime <strong>allier la créativité à la technologie</strong>, deux domaines que je considère comme complémentaires pour construire des projets solides.
+        </p>
+        <p style="line-height: 1.6; font-size: 1.1rem;">
+            Je suis quelqu'un de <strong>persévérant</strong> qui prend ses responsabilités à cœur, qu'il s'agisse de maîtriser de nouveaux outils techniques ou de bien s'intégrer dans une équipe. 
+            <br></br>
+            Mon objectif est simple : <strong> ma polyvalence au service de projets concrets avec rigueur et curiosité</strong>.
+        </p>
+    </div>
+
+    <div style="flex: 1.2; display: flex; flex-direction: column; gap: 40px;">
+        
+        <div>
+            <h3 style="border-bottom: 2px solid #444; padding-bottom: 10px; margin-bottom: 15px; font-weight: 800; letter-spacing: 1px; font-size: 1.25rem; color: #1a1a1a;">HARD SKILLS</h3>
+            <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; font-weight: 600; font-size: 1.05rem;">
+                <li> Blender</li>
+                <li> Java / Python</li>
+                <li> HTML & CSS</li>
+                <li> Procreate</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 style="border-bottom: 2px solid #444; padding-bottom: 10px; margin-bottom: 15px; font-weight: 800; letter-spacing: 1px; font-size: 1.25rem; color: #1a1a1a;">SOFT SKILLS</h3>
+            <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; font-weight: 600; font-size: 1.05rem;">
+                <li>Créativité</li>
+                <li>Rigueur</li>
+                <li>Travail d'équipe</li>
+                <li>Polyvalence</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 style="border-bottom: 2px solid #444; padding-bottom: 10px; margin-bottom: 15px; font-weight: 800; letter-spacing: 1px; font-size: 1.25rem; color: #1a1a1a;">ETUDES</h3>
+            <div style="margin-bottom: 15px;">
+                <p style="margin: 0; font-weight: bold; font-size: 1.1rem;">2023 - 2026</p>
+                <p style="margin: 2px 0 0 0; color: #444;"><strong>Bachelor BestM - ESIEE Paris</strong></p>
+            </div>
+            <div>
+                <p style="margin: 0; font-weight: bold; font-size: 1.1rem;">2022 - 2023</p>
+                <p style="margin: 2px 0 0 0; color: #444;"><strong>Classe Préparatoire - <strong>IPSA</strong></p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+</div>
+   <section id="bloc-3-contents">
+    <div class="contents-left">
+        <img src="sketch_man.png" alt="Artwork">
+    </div>
+    <div class="contents-right">
+        <h2>SOMMAIRE</h2>
+        
+        <div class="item">
+            <p>3D MODELING</p>
+        </div>
+        
+        <div class="item">
+            <p>ENTRAÎNEMENT D'IA</p>
+        </div>
+        
+        <div class="item">
+            <p>ANIMATION 2D</p>
+        </div>
+
+        <div class="item">
+            <p>ANIMATION 3D</p>
+        </div>
+
+        <div class="item">
+            <p>CODE & DÉVELOPPEMENT</p>
+        </div>
+
+        <div class="item">
+            <p>RÉALISATION COURT-MÉTRAGE</p>
+        </div>
+    </div>
+</section>
+    <section class="poster-section">
+        <div class="poster-container">
+            <h2 class="poster-title"></h2>
+            
+            <div class="landscape-item">
+                <img src="ponyo.PNG" alt="Illustration Paysage">
+                <div class="poster-overlay">
+                    <span>Voir le concept complet</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bloc-image-right" style="background-image: url('hornet_hollowknight.png');">
+        <div class="text-right">
+            <h2>3D</h2>
+            <span>MODELING</span>
+            
+        </div>
+    </section>
+    <section style="min-height: 90vh; background-color: var(--dark); display: flex; flex-wrap: wrap; align-items: stretch; overflow: hidden; position: relative;">
+    
+    <div style="flex: 0.4; padding: 100px 5% 100px 8%; color: white; display: flex; flex-direction: column; justify-content: center; min-width: 350px; z-index: 10; position: relative;">
+        <h2 style="color: white; font-size: clamp(2rem, 3.5vw, 3.5rem); margin-bottom: 30px; line-height: 0.9; font-family: var(--font-display);">
+            SCULPTER LE <br>VIRTUEL
+        </h2>
+        
+        <p style="color: #bbb; font-size: 1.05rem; line-height: 1.7; max-width: 450px; margin-bottom: 40px; text-align: justify;">
+            La <strong>modélisation 3D</strong> est pour moi le prolongement naturel du dessin. C'est un outil qui me permet de sortir du plan fixe pour explorer la structure et la profondeur des objets.
+            <br><br>
+            J'aime l'idée de bâtir des volumes et de donner une existence aux personnages que j'imagine, en jouant sur l'équilibre entre <strong>forme et technique</strong>.
+        </p>
+
+        <div style="border-top: 1px solid #333; padding-top: 30px; max-width: 450px;">
+            <h3 style="font-family: var(--font-display); color: #666; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 25px;">Compétences :</h3>
+            <ul style="list-style: none; padding: 0; color: #fff;">
+                <li style="margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center;">
+                    <span style="color: #444; margin-right: 12px;">01.</span> <strong>Modélisation Low & High Poly</strong>
+                </li>
+                <li style="margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center;">
+                    <span style="color: #444; margin-right: 12px;">02.</span> <strong>Sculpture Numérique</strong>
+                </li>
+                <li style="margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center;">
+                    <span style="color: #444; margin-right: 12px;">03.</span> <strong>Texturing & Shading</strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="flex: 0.6; position: relative; min-width: 500px; background: #000;">
+        <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            <source src="hornet_show.MP4" type="video/mp4">
+        </video>
+        
+        <div style="position: absolute; top: 0; left: -80%; width: 180%; height: 100%; 
+                    background: linear-gradient(to right, 
+                        rgba(26, 27, 30, 1) 0%, 
+                        rgba(26, 27, 30, 1) 45%, 
+                        rgba(26, 27, 30, 0.6) 55%, 
+                        rgba(26, 27, 30, 0) 85%); 
+                    pointer-events: none;">
+        </div>
+    </div>
+
+</section>
+
+    <!-- <section class="bloc-text-left">
+        <h2>CHARACTER DESIGN</h2>
+        <ul class="project-list">
+            <li>Humanoid Concept</li>
+            <li>Armor & Weapons</li>
+        </ul>
+    </section>
+
+    <section class="bloc-image-right" style="background-image: url('image_255a59.jpg');">
+        <div class="text-right">
+            <h2>CONCEPT</h2>
+            <span>ART</span>
+        </div>
+    </section> -->
+
+<section class="bloc-text-left" style="flex-direction: row; align-items: center; gap: 50px; min-height: 100vh; overflow: visible; padding: 100px;">
+    
+    <div style="flex: 1; max-width: 500px;">
+        <h2>ENTRAINEMENT D'IA</h2>
+        <h1>Projet DermAI</h1>
+        <p class="project-description">
+            Développement et entraînement d’un modèle de <strong>CNN deep learning</strong> intégré dans une application web, permettant d’analyser des images dermoscopiques et de classifier les lésions cutanées en <span class="highlight">bénignes</span> ou <span class="highlight">malignes</span>.
+        </p>
+        <p class="project-description">
+            Pour ce projet, la puissance de l'architecture de CNN <strong>VGG16</strong> a été exploitée. Ce modèle d'intelligence artificielle a été entraîné sur une vaste base de données d'images médicales, lui permettant d'apprendre à reconnaître des détails invisibles à l'œil nu et d'affiner la précision du diagnostic.
+        </p>
+    </div>
+
+    <div style="flex: 1.2; position: relative; display: flex; flex-direction: column; align-items: flex-end; padding-top: 60px;">
+        <img src="dermai1.png" alt="Projet IA 1" style="width: 100%; max-width: 700px; border-radius: 15px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); z-index: 2; transform: translateX(-30px);">
+        
+        <img src="dermai2.png" alt="Projet IA 2" style="width: 95%; max-width: 650px; border-radius: 15px; box-shadow: 0 30px 80px rgba(0,0,0,0.2); margin-top: -160px; z-index: 3; transform: translateX(20px);">
+    </div>
+
+</section>
+<section style="height: 110vh; background-color: #ffffff; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+    
+    <div style="width: 75vw; height: 75vh; border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.1); position: relative; background-color: #000;">
+        <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="eyes.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div style="
+        position: absolute; 
+        right: 8%; /* Positionné à droite */
+        bottom: 12%; 
+        z-index: 10; 
+        text-align: right;
+        pointer-events: none;
+    ">
+        <h2 style="
+            font-size: clamp(5rem, 15vw, 10rem); /* Plus gros (10rem au lieu de 8rem) */
+            line-height: 0.8; 
+            margin: 0; 
+            color: #ffffff; 
+            text-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            font-family: var(--font-display);
+            text-transform: uppercase;
+        ">2D</h2>
+        <span style="
+            letter-spacing: 12px; /* Espacement plus large */
+            font-weight: 300; 
+            font-size: 1.8rem; /* Plus gros */
+            color: #ffffff; 
+            text-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            display: block; 
+            margin-top: 5px;
+            text-transform: uppercase;
+        ">ANIMATION</span>
+    </div>
+
+</section>
+
+ <section style="min-height: 90vh; background-color: var(--dark); display: flex; flex-wrap: wrap; align-items: stretch; overflow: hidden; position: relative;">
+    
+    <div style="flex: 0.4; padding: 100px 5% 100px 8%; color: white; display: flex; flex-direction: column; justify-content: center; min-width: 350px; z-index: 10; position: relative;">
+        <h2 style="color: white; font-size: clamp(2rem, 3.5vw, 3.5rem); margin-bottom: 30px; line-height: 0.9; font-family: var(--font-display);">
+            L'ART DU <br>MOUVEMENT
+        </h2>
+        
+        <p style="color: #bbb; font-size: 1.05rem; line-height: 1.7; max-width: 450px; margin-bottom: 40px; text-align: justify;">
+            Pour moi, l'<strong>animation 2D</strong> est bien plus qu'une simple succession d'images : c'est l'art de donner une âme au dessin à travers le rythme et l'émotion. 
+            <br><br>
+            Passionnée par l'<strong>animation 2D</strong>, j'aime donner vie aux dessins en explorant le rythme et le mouvement.
+        </p>
+
+        <div style="border-top: 1px solid #333; padding-top: 30px; max-width: 450px;">
+            <h3 style="font-family: var(--font-display); color: #666; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 25px;">Compétences :</h3>
+            <ul style="list-style: none; padding: 0; color: #fff;">
+                <li style="margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center;">
+                    <span style="color: #444; margin-right: 12px;">01.</span> <strong>Storyboarding</strong>
+                </li>
+                <li style="margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center;">
+                    <span style="color: #444; margin-right: 12px;">02.</span> <strong>Character Animation</strong>
+                </li>
+                <li style="margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center;">
+                    <span style="color: #444; margin-right: 12px;">03.</span> <strong>Key Framing</strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="flex: 0.6; position: relative; min-width: 500px; background: #000;">
+        <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            <source src="bouncing_ball.MP4" type="video/mp4">
+        </video>
+        
+        <div style="position: absolute; top: 0; left: -80%; width: 180%; height: 100%; 
+                    background: linear-gradient(to right, 
+                        rgba(26, 27, 30, 1) 0%, 
+                        rgba(26, 27, 30, 1) 45%, 
+                        rgba(26, 27, 30, 0.6) 55%, 
+                        rgba(26, 27, 30, 0) 85%); 
+                    pointer-events: none;">
+        </div>
+    </div>
+
+</section>
+
+    <section class="video-pinterest-section">
+        <div class="pinterest-container">
+            
+            <div class="v-card v-60 v-align-top">
+                <video autoplay loop muted playsinline><source src="Jingling.mp4"></video>
+            </div>
+            <div class="v-card v-40 v-align-bottom">
+                <video autoplay loop muted playsinline><source src="fight.MP4"></video>
+            </div>
+
+            <div class="v-card v-40 v-align-top">
+                <video autoplay loop muted playsinline><source src="Polearm_kung_fu.MP4"></video>
+            </div>
+            <div class="v-card v-60 v-align-bottom">
+                <video autoplay loop muted playsinline><source src="Soul Eater.mov"></video>
+            </div>
+
+            <div class="v-card v-center" style="position: relative; overflow: hidden;">
+                <video id="videoSteven" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    <source src="Steven Universe.MP4" type="video/mp4">
+                </video>
+
+                <button onclick="toggleMuteSteven()" style="position: absolute; bottom: 15px; right: 15px; background: rgba(0,0,0,0.4); border: none; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 20; backdrop-filter: blur(5px);">
+                    <svg id="volumeIconSteven" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                        <path id="soundWavesSteven" d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" style="display: none;"></path>
+                        <line id="muteLineSteven" x1="1" y1="1" x2="23" y2="23" style="display: block;"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="v-card v-60 v-align-bottom">
+                <video autoplay loop muted playsinline><source src="Neuvilette.mp4"></video>
+            </div>
+            
+            <div class="v-card v-40 v-align-top">
+                <video autoplay loop muted playsinline><source src="Haikaveh.MP4"></video>
+            </div>
+
+            <div class="v-card v-40 v-align-top">
+                <video autoplay loop muted playsinline><source src="Spiderman.mp4"></video>
+            </div>
+            <div class="v-card v-60 v-align-bottom">
+                <video autoplay loop muted playsinline><source src="impact.MP4"></video>
+            </div>
+
+            <div class="v-card v-60 v-align-top">
+                <video autoplay loop muted playsinline><source src="Polearm.MP4"></video>
+            </div>
+            <div class="v-card v-40 v-align-bottom">
+                <video autoplay loop muted playsinline><source src="Deseperate run.MP4"></video>
+            </div>
+
+            <div class="v-card v-40 v-align-bottom">
+                <video autoplay loop muted playsinline><source src="Chase run.MP4"></video>
+            </div>
+            <div class="v-card v-60 v-align-top">
+                <video autoplay loop muted playsinline><source src="Zoro vs Killer.mov"></video>
+            </div>
+
+
+        </div>
+    </section>
+    
+
+<section class="responsive-section" style="display: flex; align-items: center; justify-content: space-between; padding: 120px 8%; background: var(--bg-light); gap: 40px; min-height: 800px; overflow: hidden;">
+    
+    <div class="responsive-text" style="flex: 1; max-width: 500px; z-index: 10;">
+        <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 900; line-height: 0.9; margin: 0 0 40px 0; text-transform: uppercase;">
+            ANIMATION <br> 3D
+        </h2>
+            
+        <p style="color: #666; font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px;">
+            J'explore la 3D pour transformer mes illustrations en <strong>structures physiques</strong>, alliant rigueur <strong>anatomique</strong> et crédibilité du <strong>mouvement</strong>.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 20px; text-align: left;">
+            <div style="display: flex; align-items: baseline; gap: 15px;">
+                <span style="font-size: 0.7rem; color: #bbb; font-weight: bold;">01</span>
+                <span style="font-size: 1.2rem; color: var(--dark); font-weight: 600; text-transform: uppercase;">Keyframe Animation</span>
+            </div>
+            <div style="display: flex; align-items: baseline; gap: 15px;">
+                <span style="font-size: 0.7rem; color: #bbb; font-weight: bold;">02</span>
+                <span style="font-size: 1.2rem; color: var(--dark); font-weight: 600; text-transform: uppercase;">Rigging & Skinning</span>
+            </div>
+            <div style="display: flex; align-items: baseline; gap: 15px;">
+                <span style="font-size: 0.7rem; color: #bbb; font-weight: bold;">03</span>
+                <span style="font-size: 1.2rem; color: var(--dark); font-weight: 600; text-transform: uppercase;">Background & Objets</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="stack-3d-mobile" style="flex: 1.5; position: relative; height: 650px; display: flex; align-items: center; justify-content: center;">
+        <div class="img-neferti-mobile n-1" style="position: absolute; width: 350px; aspect-ratio: 3/4; border-radius: 25px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translate(120px, -80px); z-index: 1;">
+            <img src="neferti1.png" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </div>
+        <div class="img-neferti-mobile n-2" style="position: absolute; width: 350px; aspect-ratio: 3/4; border-radius: 25px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.2); transform: translate(-120px, 80px); z-index: 2;">
+            <img src="neferti2.png" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </div>
+    </div>
+
+</section>
+    <section style="min-height: 90vh; background-color: #ffffff; display: flex; flex-wrap: wrap; align-items: center; overflow: hidden; position: relative; padding: 60px 0;">
+    
+    <div style="flex: 0.4; padding: 0 5% 0 8%; min-width: 350px; z-index: 10;">
+        <div class="text-left">
+            <h2 style="font-family: var(--font-display); font-size: clamp(3rem, 5vw, 4rem); margin-bottom: 25px; line-height: 0.9; color: var(--dark);">
+                ANIMATION <br>3D
+            </h2>
+            <p style="color: #666; font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px;">Ce projet m'a permis de donner vie à un personnage de A à Z : 
+                <br><br>après avoir sculpté son apparence en 3D, je l'ai intégré dans un univers complet pour créer une séquence animée immersive.
+                <br><br>Passer de la 2D à la 3D me permet de confronter mes concepts à la réalité du volume et à la rigueur des mécaniques corporelles.
+            </p>
+
+        </div>
+    </div>
+
+    <div style="flex: 0.6; padding-right: 5%; position: relative; min-width: 500px;">
+        <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 25px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.1); background:#000;">
+            
+            <video id="video3D" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                <source src="neferti_final.MP4" type="video/mp4">
+            </video>
+
+            <button onclick="toggleMute3D()" style="position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.4); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 20; backdrop-filter: blur(5px);">
+                <svg id="volumeIcon3D" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                    <path id="soundWaves" d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    <line id="muteLine" x1="1" y1="1" x2="23" y2="23" style="display: block;"></line>
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+    <script>
+    function toggleMute3D() {
+        const video = document.getElementById("video3D");
+        const muteLine = document.getElementById("muteLine");
+        const soundWaves = document.getElementById("soundWaves");
+        
+        if (video.muted) {
+            video.muted = false;
+            muteLine.style.display = "none";
+            soundWaves.style.display = "block";
+        } else {
+            video.muted = true;
+            muteLine.style.display = "block";
+            soundWaves.style.display = "none";
+        }
+    }
+    function toggleMuteSteven() {
+        const video = document.getElementById("videoSteven");
+        const muteLine = document.getElementById("muteLineSteven");
+        const soundWaves = document.getElementById("soundWavesSteven");
+        
+        if (video.muted) {
+            video.muted = false;
+            muteLine.style.display = "none";
+            soundWaves.style.display = "block";
+        } else {
+            video.muted = true;
+            muteLine.style.display = "block";
+            soundWaves.style.display = "none";
+        }
+    }
+    </script>
+    
+
+    <section class="bloc-image-right" style="background-image: url('background_code.jfif');">
+        <div class="text-right">
+            <h2>CODE &</h2>
+            <span>DEVELOPPEMENT</span>
+
+    </section>
+<section style="min-height: 90vh; background-color: #ffffff; display: flex; flex-wrap: wrap; align-items: center; overflow: hidden; position: relative; padding: 60px 0;">
+    
+    <div style="flex: 0.4; padding: 0 5% 0 8%; min-width: 350px; z-index: 10;">
+        <div class="text-left">
+            <h4 style="color: #bbb; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase;">Stage en entreprise</h4>
+            <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 25px; line-height: 0.9; color: var(--dark); text-transform: uppercase;">
+                SITE WEB <br>GARAGE
+            </h2>
+            <p class="project-description">
+                Dans le cadre d'un stage, j'ai conçu et développé le site vitrine complet d'un garage automobile en utilisant les langages <strong>HTML, CSS et JavaScript</strong>.
+                <br><br>
+                L'objectif était de moderniser l'image de l'entreprise tout en proposant une interface intuitive pour la présentation des services et des véhicules en vente.
+            </p>
+        </div>
+    </div>
+
+    <div style="flex: 0.6; padding-right: 5%; position: relative; min-width: 500px;">
+        <div class="landscape-item" style="background: transparent; box-shadow: 0 30px 60px rgba(0,0,0,0.1);">
+            <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 25px;">
+                <source src="site_garage_demo.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+</section>
+
+<section style="min-height: 90vh; background-color: var(--bg-light); display: flex; flex-wrap: wrap-reverse; align-items: center; overflow: hidden; position: relative; padding: 80px 0;">
+    
+    <div style="flex: 1.4; padding-left: 5%; min-width: 500px; display: flex; align-items: center; justify-content: center; z-index: 1;">
+        <div style="position: relative; width: 100%; max-width: 800px; border-radius: 25px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.15);">
+            
+            <video id="videoDermAI" autoplay loop muted playsinline style="width: 100%; height: auto; object-fit: contain; display: block;">
+                <source src="demo_site_dermai.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+        </div>
+    </div>
+
+    <div style="flex: 1; padding: 0 8% 0 5%; min-width: 400px; z-index: 10; position: relative;">
+        <div style="text-align: right;">
+            <h4 style="color: #bbb; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase;">Intelligence Artificielle</h4>
+            <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 25px; line-height: 0.9; color: var(--dark); text-transform: uppercase;">
+                PROJET DERMAI
+            <br></br>
+            </h2>
+            <p style="color: #666; font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px; text-align: justify; max-width: 550px; margin-left: auto;">
+                Développement d’un modèle de <strong>CNN deep learning</strong> (VGG16) permettant d’analyser des images médicales pour classifier les lésions cutanées en cas <span class="highlight">bénins</span> ou <span class="highlight">malignes</span>.
+            </p>
+            <p style="color: #666; font-size: 1.1rem; line-height: 1.6; text-align: justify; max-width: 550px; margin-left: auto;">
+                L'interface a été pensée pour allier <strong>performance médicale et clarté visuelle</strong>. Grâce à un design épuré et moderne, l'application transforme un processus technique complexe en un outil de diagnostic fluide, accessible et à l'esthétique soignée.
+                Réalisé avec les langages <strong>HTML, CSS et JavaScript</strong>.
+            </p>
+        </div>
+    </div>
+</section>
+<section style="min-height: 90vh; background-color: #ffffff; display: flex; flex-wrap: wrap; align-items: center; overflow: hidden; position: relative; padding: 60px 0;">
+    <div style="flex: 0.4; padding: 0 5% 0 8%; min-width: 350px; z-index: 10;">
+        <div class="text-left">
+            <h4 style="color: #bbb; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase;">Développement JS</h4>
+            <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 25px; line-height: 0.9; color: var(--dark); text-transform: uppercase;">
+                JEU <br>PACMAN
+            </h2>
+            <p class="project-description">
+                J'ai réalisé ce projet pour consolider mes bases en JavaScript. L'idée était de comprendre comment construire une logique de jeu complète à partir de zéro.
+                <br><br>
+                Ce travail m'a permis de pratiquer concrètement la gestion des collisions, le comportement de l'IA des fantômes et la manipulation du DOM.
+            </p>
+        </div>
+    </div>
+    
+    <div style="flex: 0.6; padding-right: 5%; position: relative; min-width: 500px;">
+        <div style="position: relative; width: 100%; border-radius: 25px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.1);">
+            <video id="videoPacman" autoplay loop muted playsinline style="width: 100%; height: auto; display: block; object-fit: contain;">
+                <source src="jeu_pacman_java.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</section>
+
+<script>
+    const pacmanVideo = document.getElementById('videoPacman');
+    const startOffset = 5; // Secondes à couper au début
+    const endOffset = 6;   // Secondes à couper à la fin
+
+    // 1. Force le démarrage à 5 secondes dès que la vidéo est prête
+    pacmanVideo.addEventListener('loadedmetadata', function() {
+        pacmanVideo.currentTime = startOffset;
+    });
+
+    // 2. Gère la boucle personnalisée (entre 5s et la fin - 6s)
+    pacmanVideo.addEventListener('timeupdate', function() {
+        const stopTime = pacmanVideo.duration - endOffset;
+        
+        // Si on dépasse la fin prévue, on revient à startOffset (5s)
+        if (pacmanVideo.currentTime >= stopTime) {
+            pacmanVideo.currentTime = startOffset;
+            pacmanVideo.play();
+        }
+        
+        // Sécurité : si pour une raison x la vidéo revient à 0 (boucle native), 
+        // on la force à repartir de startOffset
+        if (pacmanVideo.currentTime < startOffset) {
+            pacmanVideo.currentTime = startOffset;
+        }
+    });
+</script>
+
+<section style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; padding: 80px 5%; background: var(--bg-light); gap: 40px; min-height: 100vh;">
+    
+    <div style="flex: 1; min-width: 320px; max-width: 550px;">
+        <h4 style="color: #bbb; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; font-family: var(--font-display);">
+            Audiovisuel
+        </h4>
+        <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 25px; line-height: 0.9; color: var(--dark); text-transform: uppercase;">
+            RÉALISATION <br>COURT-MÉTRAGE
+        </h2>
+             
+        <p style="color: #666; font-size: 1.1rem; line-height: 1.6; text-align: left; font-family: var(--font-main);">
+            Dans le cadre d'un projet de <strong>court-métrage</strong>, mes camarades et moi avons collaboré pour donner vie à une histoire originale. 
+            <br><br>
+            Nous avons réalisé un court-métrage avec du matériel professionnel sous l'encadrement de <strong>Hormuz Key</strong> à l'<strong>Université Gustave Eiffel</strong>. Une immersion totale dans les étapes de <strong>création cinématographique</strong>.
+        </p>
+    </div>
+
+    <div style="flex: 1; min-width: 320px; display: flex; justify-content: center;">
+        <div style="width: 100%; max-width: 450px; aspect-ratio: 3 / 4; border-radius: 40px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.1);">
+            <img src="scénario_réalisation_cover.png" alt="Court-métrage" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </div>
+    </div>
+
+</section>
+    </section>
+   
+    <section style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('steven_hand_background.JPG'); background-size: cover; color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 20px;">
+        <div style="max-width: 900px;">
+            <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 10vw, 6.5rem); line-height: 0.9; margin: 0 0 40px 0; text-transform: uppercase;">
+                MERCI D'AVOIR REGARDÉ
+            </h2>
+
+            <p style="font-family: var(--font-main); font-size: 1.2rem; line-height: 1.6; color: white; max-width: 600px; margin: 0 auto 50px auto;">
+                Contactez-moi par email à maya.vasic35@gmail.com ou retrouvez mon profil LinkedIn juste ci-dessous.
+            </p> 
+            
+             <div style="margin-top: 20px;">
+                <a href="https://www.linkedin.com/in/vasic-maya" target="_blank" class="btn-contact"
+                style="display: inline-block; padding: 18px 40px; border: 2px solid white; color: white; text-decoration: none; font-family: var(--font-display); font-weight: 700; font-size: 1rem; text-transform: uppercase; border-radius: 4px;">
+                    PROFIL LINKEDIN
+                </a>
+            </div>
+        </div>
+        </section>
+</body>
+</html>
